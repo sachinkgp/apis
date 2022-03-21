@@ -11,6 +11,10 @@ app.get('/testuri1',(req,res)=>{
     })
 })
 
+app.get('/',(req,res)=>{
+    res.send("hello world")
+})
+
 app.listen(
     PORT,()=>{
         console.log(`yippi running the api at http://localhost:${PORT}`)
