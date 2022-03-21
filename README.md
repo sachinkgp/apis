@@ -1,0 +1,8 @@
+Git command log
+git add .
+git status
+git commit -m "comment"
+git log
+git branch Experiment
+git switch Experiment
+git merge expreriment
