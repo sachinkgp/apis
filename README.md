@@ -6,3 +6,4 @@ git log
 git branch Experiment
 git switch Experiment
 git merge expreriment
+git branch -D crazy-idea // deleting a craxily developed branch
