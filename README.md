@@ -6,3 +6,4 @@ git log
 git branch Experiment
 git switch Experiment
 git merge expreriment
+git k shows nice graphicla representation
