@@ -1,18 +1,16 @@
 const express = require('express')();
 const app = express;
 const PORT = 8080;
+const mongoose = require('mongoose');
+const {MONGOURI} = require('./keys');
+require('./models/user')
 
-// app.use(express.json());
-// Databse User "sachin" passwor "2ScnKs1sDRsqG0yo"; 
-app.get('/testuri1',(req,res)=>{
-    res.status(200).send({
-        name : "sachin",
-        age : 25
-    })
+mongoose.connect(MONGOURI);
+mongoose.connection.on('connected', ()=>{
+    console.log("connected to mongoose yeah")
 })
-
-app.get('/',(req,res)=>{
-    res.send("hello world")
+mongoose.connection.on('error', (err)=>{
+    console.log("error connecting to mongodb",err)
 })
 
 app.listen(
