@@ -3,7 +3,7 @@ const app = express;
 const PORT = 8080;
 
 // app.use(express.json());
-
+// Databse User "sachin" passwor "2ScnKs1sDRsqG0yo"; 
 app.get('/testuri1',(req,res)=>{
     res.status(200).send({
         name : "sachin",
