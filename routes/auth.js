@@ -3,9 +3,14 @@ const res = require('express/lib/response')
 const router = express.Router()
 const mongoose = require('mongoose')
 const User = mongoose.model("User")
+const jwt = require('jsonwebtoken')
+const {JWT_SECRET} = require('../keys')
+const requireLogin = require('../middleware/requireLogin')
 
-
-// app.use(express.json())
+router.get('/protected',requireLogin,(req,res)=>{
+    // req.header
+    return res.send("hello sir")
+})
 
 router.get('/signin',(req,res)=>{
     const {email,password} = req.body
@@ -14,12 +19,11 @@ router.get('/signin',(req,res)=>{
         if(!savedUser){
             return res.json({message:"User does not exist with given email id"})
         }
-        if(savedUser.password === password){
-            return res.status(200).json({message:"successfully logged in"})
-        }else{
-            return res.json({message:"wrong password"})
+        if(savedUser.password == password){
+            const token = jwt.sign({_id:savedUser._id},JWT_SECRET)
+            return res.json({token})
         }
-        return res.json({message:"nothing worked"})
+        return res.json({message:"wrong password"})
     })
 })
 
@@ -49,9 +53,6 @@ router.post('/signup',(req,res)=>{
     .catch(err=>{
         console.log(err)
     })
-})
-router.get('/allpost',(req,res)=>{
-    res.send("hello")
 })
 
 
